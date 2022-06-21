@@ -16,12 +16,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        $user = auth()->user();
-
-        return [
-            "user" => $user,
-            "token" => $user->createApiToken()
-        ];
+        return $this->respondWithToken(auth()->user());
     }
 
     /**
